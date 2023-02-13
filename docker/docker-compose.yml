@@ -1,0 +1,35 @@
+  version: '3'
+  
+  services:
+    backend:
+      image: todobackend
+      restart: always
+      ports:
+        - 3001:3001
+      networks: 
+        - todo-app
+    frontend:
+      depends_on:
+        - backend
+      image: todofrontend
+      restart: always
+      environment:
+        - BACKEND_HOST=backend
+        - BACKEND_PORT=3001
+      ports: 3000:3000
+      networks: 
+        - todo-app
+    tests:
+      depends_on:
+        - backend
+        - frontend
+      image: todotests
+      restart: always
+      environment:
+        - FRONTEND_HOST=frontend
+        - FORNTEND_PORT=3000
+      networks: 
+        - todo-app
+
+  networks:
+    - todo-app
