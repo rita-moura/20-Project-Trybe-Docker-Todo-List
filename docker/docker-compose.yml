@@ -14,8 +14,8 @@
       image: todofrontend
       restart: always
       environment:
-        - BACKEND_HOST=backend
-        - BACKEND_PORT=3001
+        - REACT_APP_API_HOST=backend
+        - REACT_APP_API_PORT=3001
       ports: 3000:3000
       networks: 
         - todo-app
@@ -26,8 +26,8 @@
       image: todotests
       restart: always
       environment:
-        - FRONTEND_HOST=frontend
-        - FORNTEND_PORT=3000
+        - FRONT_HOST=frontend
+        - FRONT_PORT=3000
       networks: 
         - todo-app
 
